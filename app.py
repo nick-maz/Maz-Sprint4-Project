@@ -49,7 +49,7 @@ if like_new_vehicles:
 else:
     df_filtered = df
 
-df_filtered
+df_filtered 
 
 # Plotting histograms and graphs
 
