@@ -8,6 +8,7 @@ st.write('Filter the data below to see certain information relating to different
 
 df = pd.read_csv('vehicles_us.csv')
 
+
 # Converting the data type to str and the value of 1.0 = yes and Nan = no
 conversion_dict = {1.0: 'yes', None: 'no'}
 df['is_4wd'] = df['is_4wd'].map(conversion_dict)
@@ -30,12 +31,23 @@ df['cylinders'] = df['cylinders'].fillna(0)
 # Changing the data type of the cylinders column
 df['cylinders'] = df['cylinders'].astype(int)
 
+
 #Creating the drop down selection 
 manufacturer_choice = df['model'].unique()
 
 selected_menu = st.selectbox('Model Name', manufacturer_choice)
 
 df_filtered = df[df.model == selected_menu]
+
+df_filtered
+
+#Creating a checkbox
+check_list = ['model', 'condition']
+like_new_vehicles = st.checkbox('Display like new vehicles only')
+if like_new_vehicles:
+    df_filtered = df[df['condition'] == "like new"]
+else:
+    df_filtered = df
 
 df_filtered
 
